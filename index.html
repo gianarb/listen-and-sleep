@@ -75,7 +75,53 @@
 
 				<section>
                     <h3>A widespread monitoring tools</h3>
-                    <pre><code style="font-size:2em">tail -f /var/log/nginx/errors.log</code></pre>
+                    <pre><code style="font-size:2em" class="fragment" data-fragment-index="1">tail -f /var/log/nginx/errors.log</code></pre>
+				</section>
+
+				<section data-background="img/daemon.jpg"></section>
+
+				<section>
+                    <pre><code></code></pre>
+				</section>
+
+				<section>
+                    <h3>Expensive to store</h3>
+				</section>
+
+				<section>
+                    <h3>Difficult to index</h3>
+				</section>
+
+				<section>
+                    <h3>They are awesome for some use cases</h3>
+                    <ul>
+                        <li>extract informations</li>
+                        <li>They can be "human like"</li>
+                        <li>... you have your personal list</li>
+                    </ul>
+				</section>
+
+				<section>
+                    <h3>we are here to speak about time series</h3>
+                    <pre><code>
+[
+  {
+    "name": "log_lines",
+    "columns": ["time", "line"],
+    "point": [1400425947368, "here's some useful log info"]
+  }
+]
+                    </code></pre>
+				</section>
+				<section>
+                    <h3>Only one word: EASY</h3>
+                    <pre><code>
+{
+  "name": "cpu_percent_use",
+  "columns": ["value"],
+  "point": 40
+}
+                    </code></pre>
 				</section>
 
 				<section>
