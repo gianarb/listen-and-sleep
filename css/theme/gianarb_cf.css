@@ -291,3 +291,7 @@ section p span {
   border-radius: 14%;
   padding: 3px;
   font-size: 0.8em; }
+
+.reveal pre {
+  line-height: inherit;
+  box-shadow: none; }
