@@ -81,7 +81,20 @@
 				<section data-background="img/daemon.jpg"></section>
 
 				<section>
-                    <pre><code></code></pre>
+                    <pre><code>
+2016/04/15 15:42:46 [warn] 2330#0: *167 using uninitialized variable,
+    client: 10.0.1.1, server: localhost.dev, request: "POST /auth HTTP/1.1",
+    host: "localhost"
+
+2016/04/15 15:44:44 [error] 2330#0: *171 FastCGI sent in stderr: "
+    PHP message: PHP Fatal error:  Uncaught exception
+    'RuntimeException' with message 'All broken)[500]'
+    in /var/www/my/project.php:237
+
+Stack trace:
+#0 /var/www/index.php:45 ObjectService->flush()
+#1 [internal function] ->save()
+                    </code></pre>
 				</section>
 
 				<section>
