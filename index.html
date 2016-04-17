@@ -163,8 +163,107 @@ Stack trace:
                 </section>
 
                 <section>
-                    <h3>here we will use influxdb</h3>
+                    <h3>InfluxDB</h3>
                     <img height="250px" src="img/influxdb.jpg">
+                    <ul>
+                        <li>database optimezed to manage time series</li>
+                        <li>telegraf to collect and push metrics</li>
+                        <li>kapacitor to trigger alerts</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <ul>
+                        <li>opensource</li>
+                        <li>pure go</li>
+                        <li>make easy</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>line protocol</h3>
+                    <p>serialization protocol created to be slim</p>
+                    <pre><code>
+[key] [fields] [timestamp]
+temperature,machine=unit internal=3,external=10 1434055562000000035
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>UDP and TCP protocol</h3>
+                    <p>serialization protocol created to be slim</p>
+                    <pre style="width:100%"><code>
+Corley\Benchmarks\InfluxDB\AdapterEvent
+    Method Name                Iterations    Average Time      Ops/second
+    ------------------------  ------------  --------------    -------------
+    sendDataUsingHttpAdapter: [1,000     ] [0.0026700308323] [374.52751]
+    sendDataUsingUdpAdapter : [1,000     ] [0.0000436344147] [22,917.69026]
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Query SQL like</h3>
+                    <pre style="width:100%;font-size:1em"><code>
+SELECT value
+    FROM cpu_load_short
+    WHERE region='us-west'
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>continuous query</h3>
+                    <pre style="width:100%;font-size:1em"><code>
+CREATE CONTINUOUS QUERY minnie ON world
+    BEGIN SELECT min(mouse) INTO min_mouse
+    FROM zoo GROUP BY time(30m) END
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Telegraf</h3>
+                    <p>Telegraf is a plugin-driven server agent for collecting and reporting metrics</p>
+                    <pre style="width:100%"><code>
+[global_tags]
+  dc = "do-ams-3"
+  name = "db1"
+[agent]
+  interval = "10s"
+[[outputs.influxdb]]
+  urls = ["http://localhost:8086"]
+  precision = "s"
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Kapacitor</h3>
+                    <p>Kapacitor is a data processing engine. It can process both stream and batch data</p>
+                    <p>Follow your metrics and send notification when one of them has a strange behavior</p>
+                </section>
+
+                <section>
+                    <h3>Kapacitor</h3>
+                    <pre style="width:100%"><code>
+stream
+    |from()
+        .measurement('cpu')
+    |alert()
+        .crit(lambda: "usage_idle" <  70)
+        .log('/tmp/alerts.log')
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>That's it</h3>
+                    <p>A series of great tools to monitor your applications and
+                    your infrastructure</p>
+                </section>
+
+                <section>
+                    <img style="width:450px;border:0px;box-shadow:0 0 0;" src="img/devil.jpg">
+                    <h3>A monitoring system is not for all</h3>
                 </section>
 
 				<section>
